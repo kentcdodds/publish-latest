@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
-    "build": "pushd src && babel index.js -d ../dist && popd",
+    "build": "cd src && babel index.js -d ../dist && cd ..",
     "commit": "git-cz",
     "eslint": "eslint src/ -c other/src.eslintrc --ignore-path other/src.eslintignore && eslint src/*.test.js",
     "check-coverage": "istanbul check-coverage --statements 80 --branches 58 --functions 90 --lines 80",
