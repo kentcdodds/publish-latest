@@ -53,3 +53,7 @@ $ publish-latest --help
 If you do not specify a `url` then the script will derive one from your `package.json` and then the script will add a
 token to the GitHub URL so the commit can be pushed. This token comes from either `BOT_GH_TOKEN` or `GH_TOKEN`.
 
+## LICENSE
+
+MIT
+
