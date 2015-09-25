@@ -21,7 +21,7 @@ function publishLatest(options, cb) {
     if (stdout) {
       console.log('stdout:', stdout); // eslint-disable-line no-console
     }
-    cb(error, result);
+    cb && cb(error, result);
   });
 }
 
