@@ -1,5 +1,12 @@
 # publish-latest
 
+
+Status:
+[![npm version](https://img.shields.io/npm/v/publish-latest.svg?style=flat-square)](https://www.npmjs.org/package/publish-latest)
+[![npm downloads](https://img.shields.io/npm/dm/publish-latest.svg?style=flat-square)](http://npm-stat.com/charts.html?package=publish-latest&from=2015-09-01)
+[![Build Status](https://img.shields.io/travis/kentcdodds/publish-latest.svg?style=flat-square)](https://travis-ci.org/kentcdodds/publish-latest)
+[![Code Coverage](https://img.shields.io/codecov/c/github/kentcdodds/publish-latest.svg?style=flat-square)](https://codecov.io/github/kentcdodds/publish-latest)
+
 A script to allow you to publish the generated built files of your project to a specific branch in your repository.
 
 I use this as part of my travis build with `semantic-release`. I run the build as a `prepublish` script, then as a
