@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var programVersion = require('../package.json').version;
+var publishLatest = require('../dist/index');
+
+program
+  .version(programVersion)
+  .option('-e, --user-email [email]', 'User email to use for the release commit (defaults to author/first contributor email)')
+  .option('-n, --user-name [name]', 'User name to use for the release commit (defaults to author/first contributor name)')
+  .option('-b, --branch [name]', 'The branch to push the latest to (defaults to `latest`)')
+  .option('-u, --url [url]', 'The git URL to publish to (defaults to project git url)')
+  .option('-r, --release-version [version]', 'Version to release (defaults to package.json version)')
+  .option('-a, --add "[file1 dir1 file2]"', 'Files to add (defaults to `package.json dist`)')
+  .option('-t, --temp-branch [name]', 'Temp branch used for preparing the release (defaults to tmp/travis)')
+  .parse(process.argv);
+
+publishLatest(program);
+
+

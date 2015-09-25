@@ -1,0 +1,69 @@
+{
+  "name": "publish-latest",
+  "description": "Script to publish generated files to a `latest` branch",
+  "version": "0.0.0-semantically-released.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "pushd src && babel index.js -d ../dist && popd",
+    "commit": "git-cz",
+    "eslint": "eslint src/ -c other/src.eslintrc --ignore-path other/src.eslintignore && eslint src/*.test.js",
+    "check-coverage": "istanbul check-coverage --statements 80 --branches 58 --functions 90 --lines 80",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "test:watch": "mocha src/*.test.js -w --compilers js:babel/register",
+    "test": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js --compilers js:babel/register",
+    "prepublish": "npm run build",
+    "postpublish": "bin/publish-latest",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kentcdodds/publish-latest.git"
+  },
+  "keywords": [
+    "git",
+    "ci",
+    "release",
+    "publish"
+  ],
+  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentcdodds/publish-latest/issues"
+  },
+  "bin": {
+    "publish-latest": "bin/publish-latest"
+  },
+  "homepage": "https://github.com/kentcdodds/publish-latest#readme",
+  "devDependencies": {
+    "babel": "5.8.23",
+    "chai": "3.2.0",
+    "chai-string": "1.1.2",
+    "codecov.io": "0.1.6",
+    "commitizen": "1.0.4",
+    "cz-conventional-changelog": "1.1.0",
+    "eslint": "1.4.1",
+    "eslint-config-kentcdodds": "4.0.0",
+    "eslint-plugin-mocha": "0.5.1",
+    "ghooks": "0.3.2",
+    "istanbul": "0.3.19",
+    "lodash": "3.10.1",
+    "mocha": "2.3.2",
+    "semantic-release": "^4.3.4",
+    "validate-commit-msg": "1.0.0"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "./node_modules/.bin/validate-commit-msg && npm run eslint && npm t && npm run check-coverage && echo 'pre-commit checks good 👍'"
+    }
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog/"
+  },
+  "dependencies": {
+    "commander": "^2.8.1",
+    "parse-author": "0.2.0",
+    "path-here": "^1.1.0",
+    "repo-path-parse": "1.0.1"
+  }
+}

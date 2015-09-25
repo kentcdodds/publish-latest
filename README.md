@@ -1,0 +1,48 @@
+# publish-latest
+
+A script to allow you to publish the generated built files of your project to a specific branch in your repository.
+
+I use this as part of my travis build with `semantic-release`. I run the build as a `prepublish` script, then as a
+`postpublish` script, I run this script which commits the built files and pushes them to my `latest` branch.
+Then `semantic-release post` will create a release on github with that commit.
+
+## Usage
+
+```javascript
+{
+  "scripts": {
+    "build": "echo 'building project'",
+    "prepublish": "npm run build",
+    "postpublish": "publish-latest",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  }
+}
+```
+
+### CLI Options
+
+You can pass several options to `publish-latest` to override the defaults. Here's the output of `--help`
+
+```
+$ publish-latest --help
+
+  Usage: publish-latest [options]
+
+  Options:
+
+    -h, --help                       output usage information
+    -V, --version                    output the version number
+    -e, --user-email [email]         User email to use for the release commit (defaults to author/first contributor email)
+    -n, --user-name [name]           User name to use for the release commit (defaults to author/first contributor name)
+    -b, --branch [name]              The branch to push the latest to (defaults to `latest`)
+    -u, --url [url]                  The git URL to publish to (defaults to project git url)
+    -r, --release-version [version]  Version to release (defaults to package.json version)
+    -a, --add "[file1 dir1 file2]"   Files to add (defaults to `package.json dist`)
+    -t, --temp-branch [name]         Temp branch used for preparing the release (defaults to tmp/travis)
+```
+
+### ENV variables
+
+If you do not specify a `url` then the script will derive one from your `package.json` and then the script will add a
+token to the GitHub URL so the commit can be pushed. This token comes from either `BOT_GH_TOKEN` or `GH_TOKEN`.
+
