@@ -1,7 +1,7 @@
 {
   "name": "publish-latest",
   "description": "Script to publish generated files to a `latest` branch",
-  "version": "0.0.0-semantically-released.0",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
