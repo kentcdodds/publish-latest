@@ -1,7 +1,7 @@
 {
   "name": "publish-latest",
   "description": "Script to publish generated files to a `latest` branch",
-  "version": "0.0.0-semantically-released.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run test:watch",
