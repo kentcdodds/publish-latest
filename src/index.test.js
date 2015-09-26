@@ -17,13 +17,13 @@ describe('publishLatest', () => {
       const parts = [
         [`git config --global user.email ${options.userEmail}`, 'setting user email'],
         [`git config --global user.name "${options.userName}"`, 'setting user name'],
+        [`git remote set-url origin ${options.url}`, 'setting remote'],
         [`git checkout -b ${options.tempBranch}`, 'checking out branch'],
         [`git add ${options.add} -f`, 'adding files'],
         [`git commit -m v${options.releaseVersion} --no-verify`, 'committing files'],
-        [`git remote set-url origin ${options.url}`, 'setting remote'],
         [`git remote set-branches --add origin ${options.branch}`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
-        [`git checkout -b ${options.branch}`, 'checking out remote branch'],
+        [`git checkout ${options.branch}`, 'checking out remote branch'],
         [`git merge ${options.tempBranch} -m v${options.releaseVersion} -X theirs`, 'merging into branch'],
         [`git push origin HEAD:${options.branch} -f`, 'force pushing HEAD to origin']
       ];
@@ -40,13 +40,13 @@ describe('publishLatest', () => {
       const parts = [
         [`git config --global user.email kent@doddsfamily.us`, 'setting user email'],
         [`git config --global user.name "Kent C. Dodds"`, 'setting user name'],
+        [`git remote set-url origin https://token-hidden@github.com/kentcdodds/publish-latest`, 'setting remote'],
         [`git checkout -b travis/temp`, 'checking out branch'],
         [`git add dist package.json -f`, 'adding files'],
         [/git commit -m v.*? --no-verify/, 'committing files'],
-        [`git remote set-url origin https://token-hidden@github.com/kentcdodds/publish-latest`, 'setting remote'],
         [`git remote set-branches --add origin latest`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
-        [`git checkout -b latest`, 'checking out remote branch'],
+        [`git checkout latest`, 'checking out remote branch'],
         [/git merge travis\/temp -m v.*? -X theirs/, 'merging into branch'],
         [`git push origin HEAD:latest -f`, 'force pushing HEAD to origin']
       ];
