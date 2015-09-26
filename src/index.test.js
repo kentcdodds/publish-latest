@@ -23,7 +23,7 @@ describe('publishLatest', () => {
         [`git remote set-url origin ${options.url}`, 'setting remote'],
         [`git remote set-branches --add origin ${options.branch}`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
-        [`git checkout ${options.branch}`, 'checking out remote branch'],
+        [`git checkout -b ${options.branch}`, 'checking out remote branch'],
         [`git merge ${options.tempBranch} -m v${options.releaseVersion} -X theirs`, 'merging into branch'],
         [`git push origin HEAD:${options.branch} -f`, 'force pushing HEAD to origin']
       ];
@@ -46,7 +46,7 @@ describe('publishLatest', () => {
         [`git remote set-url origin https://token-hidden@github.com/kentcdodds/publish-latest`, 'setting remote'],
         [`git remote set-branches --add origin latest`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
-        [`git checkout latest`, 'checking out remote branch'],
+        [`git checkout -b latest`, 'checking out remote branch'],
         [/git merge travis\/temp -m v.*? -X theirs/, 'merging into branch'],
         [`git push origin HEAD:latest -f`, 'force pushing HEAD to origin']
       ];

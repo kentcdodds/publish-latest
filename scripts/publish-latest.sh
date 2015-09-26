@@ -41,18 +41,17 @@ run_git remote set-url origin $GIT_URL
 _echo "checking out $LATEST_BRANCH"
 run_git remote set-branches --add origin $LATEST_BRANCH # required because travis clones with --branch=master
 run_git fetch origin
-run_git checkout $LATEST_BRANCH
-
-_echo "merging built files"
-run_git merge $TMP_BRANCH -m v$RELEASE_VERSION -X theirs
 
 _echo "checking for $LATEST_BRANCH branch"
-if git ls-remote origin | grep -sw "$LATEST_BRANCH" 2>&1>/dev/null; then
+if run_git ls-remote origin | grep -sw "$LATEST_BRANCH" 2>&1>/dev/null; then
   _echo "$LATEST_BRANCH exists on remote"
 else
   _echo "$LATEST_BRANCH does not exist on remote... creating it..."
   run_git checkout -b $LATEST_BRANCH
 fi
+
+_echo "merging built files"
+run_git merge $TMP_BRANCH -m v$RELEASE_VERSION -X theirs
 
 _echo "pushing"
 run_git push origin HEAD:$LATEST_BRANCH -f

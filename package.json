@@ -4,6 +4,7 @@
   "version": "0.0.0-semantically-released.0",
   "main": "dist/index.js",
   "scripts": {
+    "start": "npm run test:watch",
     "prebuild": "rm -rf dist && mkdir dist",
     "build": "cd src && babel index.js -d ../dist && cd ..",
     "commit": "git-cz",
