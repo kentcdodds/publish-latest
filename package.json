@@ -50,7 +50,7 @@
     "istanbul": "0.3.19",
     "lodash": "3.10.1",
     "mocha": "2.3.2",
-    "semantic-release": "^4.3.4",
+    "semantic-release": "4.3.5",
     "validate-commit-msg": "1.0.0"
   },
   "config": {
@@ -62,9 +62,9 @@
     "path": "node_modules/cz-conventional-changelog/"
   },
   "dependencies": {
-    "commander": "^2.8.1",
+    "commander": "2.8.1",
     "parse-author": "0.2.0",
-    "path-here": "^1.1.0",
+    "path-here": "1.1.0",
     "repo-path-parse": "1.0.1"
   }
 }
