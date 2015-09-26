@@ -46,6 +46,14 @@ run_git checkout $LATEST_BRANCH
 _echo "merging built files"
 run_git merge $TMP_BRANCH -m v$RELEASE_VERSION -X theirs
 
+_echo "checking for $LATEST_BRANCH branch"
+if git ls-remote origin | grep -sw "$LATEST_BRANCH" 2>&1>/dev/null; then
+  _echo "$LATEST_BRANCH exists on remote"
+else
+  _echo "$LATEST_BRANCH does not exist on remote... creating it..."
+  run_git checkout -b $LATEST_BRANCH
+fi
+
 _echo "pushing"
 run_git push origin HEAD:$LATEST_BRANCH -f
 
