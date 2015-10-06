@@ -22,10 +22,6 @@ run_git () {
   fi
 }
 
-_echo "setting global git config: $USER_NAME, $USER_EMAIL"
-run_git config --global user.email "$USER_EMAIL"
-run_git config --global user.name "\"$USER_NAME\""
-
 _echo "setting remote"
 run_git remote set-url origin $GIT_URL
 
@@ -44,8 +40,8 @@ run_git checkout -b "$TMP_BRANCH"
 _echo "adding $FILES_TO_ADD"
 run_git add $FILES_TO_ADD -f
 
-_echo "committing with $RELEASE_VERSION"
-run_git commit -m v$RELEASE_VERSION --no-verify
+_echo "committing with $RELEASE_VERSION as $USER_NAME with $USER_EMAIL"
+run_git commit -m v$RELEASE_VERSION --no-verify --author="$USER_NAME <$USER_EMAIL>"
 
 _echo "checking out $LATEST_BRANCH"
 run_git remote set-branches --add origin $LATEST_BRANCH # required because travis clones with --branch=master

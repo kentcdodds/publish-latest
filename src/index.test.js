@@ -15,12 +15,11 @@ describe('publishLatest', () => {
       expect(result.stdout, 'standard out should have the expected output').to.exist;
 
       const parts = [
-        [`git config --global user.email ${options.userEmail}`, 'setting user email'],
-        [`git config --global user.name "${options.userName}"`, 'setting user name'],
         [`git remote set-url origin ${options.url}`, 'setting remote'],
         [`git checkout -b ${options.tempBranch}`, 'checking out branch'],
         [`git add ${options.add} -f`, 'adding files'],
-        [`git commit -m v${options.releaseVersion} --no-verify`, 'committing files'],
+        [`git commit -m v${options.releaseVersion} --no-verify --author=${options.userName} <${options.userEmail}>`,
+          'committing files'],
         [`git remote set-branches --add origin ${options.branch}`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
         [`git checkout ${options.branch}`, 'checking out remote branch'],
@@ -38,12 +37,10 @@ describe('publishLatest', () => {
       expect(result.stderr, 'there should have been nothing logged to standard error').to.equal('');
       expect(result.stdout, 'standard out should have the expected output').to.exist;
       const parts = [
-        [`git config --global user.email kent@doddsfamily.us`, 'setting user email'],
-        [`git config --global user.name "Kent C. Dodds"`, 'setting user name'],
         [`git remote set-url origin https://token-hidden@github.com/kentcdodds/publish-latest`, 'setting remote'],
         [`git checkout -b travis/temp`, 'checking out branch'],
         [`git add dist package.json -f`, 'adding files'],
-        [/git commit -m v.*? --no-verify/, 'committing files'],
+        [/git commit -m v.*? --no-verify --author=Kent C. Dodds <kent@doddsfamily.us>/, 'committing files'],
         [`git remote set-branches --add origin latest`, 'adding remote branch'],
         [`git fetch origin`, 'fetching origin'],
         [`git checkout latest`, 'checking out remote branch'],
