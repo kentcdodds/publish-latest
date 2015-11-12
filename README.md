@@ -1,5 +1,4 @@
-# publish-latest
-
+# publish-latest (UNMAINTAINED)
 
 Status:
 [![npm version](https://img.shields.io/npm/v/publish-latest.svg?style=flat-square)](https://www.npmjs.org/package/publish-latest)
@@ -52,6 +51,10 @@ $ publish-latest --help
 
 If you do not specify a `url` then the script will derive one from your `package.json` and then the script will add a
 token to the GitHub URL so the commit can be pushed. This token comes from either `BOT_GH_TOKEN` or `GH_TOKEN`.
+
+## UNMAINTAINED
+
+I created this tool to solve issues mentioned in my blogpost [Why I don't commit generated files to master](https://medium.com/@kentcdodds/why-i-don-t-commit-generated-files-to-master-a4d76382564), however there is a service called [npmcdn.com](https://npmcdn.com) which mostly solves the problems I've mentioned in that blogpost. So I no longer need this tool and will not plan on maintaining it. If you're personally seriously interested in taking it on, please let me know!
 
 ## LICENSE
 
