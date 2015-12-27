@@ -1,5 +1,7 @@
 # publish-latest (UNMAINTAINED)
 
+See the beginning edit of [this blogpost](https://medium.com/@kentcdodds/why-i-don-t-commit-generated-files-to-master-a4d76382564) for an explination of why this package is no longer necessary.
+
 Status:
 [![npm version](https://img.shields.io/npm/v/publish-latest.svg?style=flat-square)](https://www.npmjs.org/package/publish-latest)
 [![npm downloads](https://img.shields.io/npm/dm/publish-latest.svg?style=flat-square)](http://npm-stat.com/charts.html?package=publish-latest&from=2015-09-01)
